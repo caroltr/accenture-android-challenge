@@ -1,19 +1,19 @@
 package com.accenture.marvel.respository
 
 import com.accenture.marvel.network.ApiFactory
-import com.accenture.marvel.model.Character
 import com.accenture.marvel.model.ComicResult
+import com.accenture.marvel.model.CharacterData
 import io.reactivex.Observable
 
 class RemoteRepository {
 
-    fun fetchCharacters(): Observable<List<Character>> {
+    fun fetchCharacters(offset: Int): Observable<CharacterData> {
         return ApiFactory.marvelApi
-            .getCharacters()
+            .getCharacters(offset)
             .map { response ->
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        it.data.results
+                        it.data
                     } ?: run {
                         error(Exception()) // TODO
                     }

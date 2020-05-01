@@ -5,16 +5,16 @@ import kotlinx.android.parcel.Parcelize
 
 data class CharacterResponse(
     val code: String,
-    val data: Data,
+    val data: CharacterData,
     val status: String
 )
 
-data class Data(
-    val count: String,
-    val limit: String,
-    val offset: String,
+data class CharacterData(
+    val count: Int,
+    val limit: Int,
+    val offset: Int,
     val results: List<Character>,
-    val total: String
+    val total: Int
 )
 
 @Parcelize

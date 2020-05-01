@@ -6,17 +6,15 @@ import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MarvelApi {
 
     @GET("public/characters")
-    fun getCharacters(): Observable<Response<CharacterResponse>>
+    fun getCharacters(
+        @Query("offset") offset: Int
+    ): Observable<Response<CharacterResponse>>
 
-//    @GET("public/comics/{id}")
-//    fun getComic(
-//        @Path("id") id: String
-//    ): Observable<Response<ComicResponse>>
-//
     @GET("public/characters/{characterId}/comics")
     fun getComicByCharacter(
         @Path("characterId") characterId: String
