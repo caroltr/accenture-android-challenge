@@ -16,7 +16,18 @@ class HqActivity : AppCompatActivity(), HqContract.View {
         setContentView(R.layout.activity_hq)
         setPresenter(HqPresenter(this))
 
+        displayBackButton()
+
         presenter.start(intent.extras)
+    }
+
+    private fun displayBackButton() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     override fun showData(hq: Hq) {

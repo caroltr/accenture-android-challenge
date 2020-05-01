@@ -19,8 +19,19 @@ class CharacterActivity : AppCompatActivity(), CharacterContract.View {
         setContentView(R.layout.activity_character)
         setPresenter(CharacterPresenter(this))
 
+        displayBackButton()
+
         presenter.start(intent.extras)
         btn_hq.setOnClickListener { presenter.getHqId() }
+    }
+
+    private fun displayBackButton() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     override fun showData(name: String, description: String, avatarUrl: String) {
