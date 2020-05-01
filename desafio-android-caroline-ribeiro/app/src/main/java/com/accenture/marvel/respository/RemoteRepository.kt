@@ -1,11 +1,15 @@
 package com.accenture.marvel.respository
 
+import com.accenture.marvel.error.ErrorHandler
+import com.accenture.marvel.error.exception.ApiResponseError
 import com.accenture.marvel.network.ApiFactory
 import com.accenture.marvel.model.ComicResult
 import com.accenture.marvel.model.CharacterData
 import io.reactivex.Observable
 
 class RemoteRepository {
+
+    private val errorHandler = ErrorHandler()
 
     fun fetchCharacters(offset: Int): Observable<CharacterData> {
         return ApiFactory.marvelApi
@@ -15,10 +19,11 @@ class RemoteRepository {
                     response.body()?.let {
                         it.data
                     } ?: run {
-                        error(Exception()) // TODO
+                        error(ApiResponseError("Response is empty"))
                     }
                 } else {
-                    error(Exception()) // TODO
+                    val error = errorHandler.getError(response.code(), response.errorBody())
+                    error(error)
                 }
             }
     }
@@ -31,10 +36,11 @@ class RemoteRepository {
                     response.body()?.let {
                         it.data.results
                     } ?: run {
-                        error(Exception()) // TODO
+                        error(ApiResponseError("Response is empty"))
                     }
                 } else {
-                    error(Exception()) // TODO
+                    val error = errorHandler.getError(response.code(), response.errorBody())
+                    error(error)
                 }
             }
     }

@@ -1,5 +1,7 @@
 package com.accenture.marvel.network
 
+import com.accenture.marvel.error.ErrorHandler
+import com.accenture.marvel.error.exception.ApiResponseError
 import com.accenture.marvel.util.AppConstants
 import com.accenture.marvel.util.md5
 import okhttp3.Interceptor
@@ -15,12 +17,11 @@ object ApiFactory {
     private val publicKey = AppConstants.apiPublicKey
     private val hash = "$ts$privateKey$publicKey".md5()
 
-
     // Creating Auth Interceptor to add api_key query in front of all the requests.
-    private val authInterceptor = Interceptor {chain->
+    private val authInterceptor = Interceptor { chain ->
         val newUrl = chain.request().url()
             .newBuilder()
-            .addQueryParameter("apikey", publicKey)
+//            .addQueryParameter("apikey", publicKey)
             .addQueryParameter("ts", ts)
             .addQueryParameter("hash", hash)
             .build()
@@ -36,19 +37,16 @@ object ApiFactory {
     //OkhttpClient for building http request url
     private val client = OkHttpClient().newBuilder()
         .addInterceptor(authInterceptor)
-//        .callTimeout(2, TimeUnit.SECONDS)
-//        .connectTimeout(2, TimeUnit.SECONDS)
-//        .readTimeout(2, TimeUnit.SECONDS)
-//        .writeTimeout(2, TimeUnit.SECONDS)
         .build()
 
-    private fun retrofit() : Retrofit = Retrofit.Builder()
+    private fun retrofit(): Retrofit = Retrofit.Builder()
         .client(client)
         .baseUrl("https://gateway.marvel.com/v1/")
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
 
-    val marvelApi : MarvelApi = retrofit().create(
-        MarvelApi::class.java)
+    val marvelApi: MarvelApi = retrofit().create(
+        MarvelApi::class.java
+    )
 }
