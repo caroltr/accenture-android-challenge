@@ -23,7 +23,7 @@ object ApiFactory {
     private val authInterceptor = Interceptor {chain->
         val newUrl = chain.request().url()
             .newBuilder()
-            .addQueryParameter("apikey", "4891d372e11464d73a28e1ce1d32f5d2")
+            .addQueryParameter("apikey", publicKey)
             .addQueryParameter("ts", ts)
             .addQueryParameter("hash", hash)
             .build()
