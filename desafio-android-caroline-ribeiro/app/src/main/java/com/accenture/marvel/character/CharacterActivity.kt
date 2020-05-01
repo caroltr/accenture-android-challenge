@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.accenture.marvel.R
 import com.accenture.marvel.util.load
-import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.activity_character.*
 
 class CharacterActivity : AppCompatActivity(), CharacterContract.View {
 
@@ -12,20 +12,16 @@ class CharacterActivity : AppCompatActivity(), CharacterContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
-
+        setContentView(R.layout.activity_character)
         setPresenter(CharacterPresenter(this))
 
         presenter.start(intent.extras)
     }
 
-    override fun showData(character: CharacterModel) {
-        tv_name.text = character.name
-        tv_description.text = character.description
-        iv_avatar.load(character.avatarUrl)
-
-        character.series
-        character.stories
+    override fun showData(name: String, description: String, avatarUrl: String) {
+        tv_name.text = name
+        tv_description.text = description
+        iv_avatar.load(avatarUrl)
     }
 
     override fun setPresenter(presenter: CharacterContract.Presenter) {

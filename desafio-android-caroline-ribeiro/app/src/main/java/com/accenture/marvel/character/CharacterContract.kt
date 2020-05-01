@@ -11,6 +11,6 @@ interface CharacterContract {
     }
 
     interface View: BaseView<Presenter> {
-        fun showData(character: CharacterModel)
+        fun showData(name: String, description: String, avatarUrl: String)
     }
 }
