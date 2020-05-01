@@ -16,6 +16,7 @@ class CharacterActivity : AppCompatActivity(), CharacterContract.View {
         setPresenter(CharacterPresenter(this))
 
         presenter.start(intent.extras)
+        btn_hq.setOnClickListener { presenter.getHqId() }
     }
 
     override fun showData(name: String, description: String, avatarUrl: String) {

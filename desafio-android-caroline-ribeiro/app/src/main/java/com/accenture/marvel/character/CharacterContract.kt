@@ -8,6 +8,7 @@ interface CharacterContract {
 
     interface Presenter: BasePresenter {
         fun start(extras: Bundle?)
+        fun getHqId()
     }
 
     interface View: BaseView<Presenter> {

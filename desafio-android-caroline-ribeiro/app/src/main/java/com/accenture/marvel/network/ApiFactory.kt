@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object ApiFactory {
 
@@ -39,6 +40,10 @@ object ApiFactory {
     //OkhttpClient for building http request url
     private val client = OkHttpClient().newBuilder()
         .addInterceptor(authInterceptor)
+        .callTimeout(2, TimeUnit.SECONDS)
+        .connectTimeout(2, TimeUnit.SECONDS)
+        .readTimeout(2, TimeUnit.SECONDS)
+        .writeTimeout(2, TimeUnit.SECONDS)
         .build()
 
     private fun retrofit() : Retrofit = Retrofit.Builder()

@@ -25,20 +25,22 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         rv_items.layoutManager = GridLayoutManager(this, 3)
         rv_items.adapter = adapter
 
-        ApiFactory.marvelApi.getCharacters()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                println("SUCESSO")
+            ApiFactory.marvelApi.getCharacters()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    println("SUCESSO")
 
-                it.body()?.let { response ->
-                    val results = response.data.results
-                    adapter.updateItems(results)
-                }
+                    it.body()?.let { response ->
+                        val results = response.data.results
+                        adapter.updateItems(results)
+                    }
 
-            }, {
-                println("ERROR")
-            })
+                }, {
+                    println("ERROR")
+                }, {
+                    println("COMPLETED")
+                })
     }
 
     override fun setPresenter(presenter: MainContract.Presenter) {
