@@ -1,11 +1,7 @@
 package com.accenture.marvel.character
 
 import android.os.Bundle
-import com.accenture.marvel.hq.model.ComicResult
-import com.accenture.marvel.network.ApiFactory
 import com.accenture.marvel.network.model.Result
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 class CharacterPresenter(private val view: CharacterContract.View) : CharacterContract.Presenter {
 

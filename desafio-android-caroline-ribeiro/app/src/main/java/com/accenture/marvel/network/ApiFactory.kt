@@ -40,10 +40,10 @@ object ApiFactory {
     //OkhttpClient for building http request url
     private val client = OkHttpClient().newBuilder()
         .addInterceptor(authInterceptor)
-        .callTimeout(2, TimeUnit.SECONDS)
-        .connectTimeout(2, TimeUnit.SECONDS)
-        .readTimeout(2, TimeUnit.SECONDS)
-        .writeTimeout(2, TimeUnit.SECONDS)
+//        .callTimeout(2, TimeUnit.SECONDS)
+//        .connectTimeout(2, TimeUnit.SECONDS)
+//        .readTimeout(2, TimeUnit.SECONDS)
+//        .writeTimeout(2, TimeUnit.SECONDS)
         .build()
 
     private fun retrofit() : Retrofit = Retrofit.Builder()

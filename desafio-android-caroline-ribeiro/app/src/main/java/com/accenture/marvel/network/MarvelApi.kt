@@ -1,12 +1,9 @@
 package com.accenture.marvel.network
 
-//import com.accenture.marvel.hq.model.CharacterComicResponse
 import com.accenture.marvel.network.model.CharacterResponse
-//import com.accenture.marvel.network.model.comic.ComicResponse
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
 
 interface MarvelApi {
 
