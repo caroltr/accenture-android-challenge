@@ -1,5 +1,6 @@
 package com.accenture.marvel.main
 
+import androidx.paging.PagedList
 import com.accenture.marvel.base.BasePresenter
 import com.accenture.marvel.base.BaseView
 import com.accenture.marvel.model.Character
@@ -12,6 +13,6 @@ interface MainContract {
 
     interface View: BaseView<Presenter> {
         fun showError()
-        fun showCharacters(characters: List<Character>)
+        fun showCharacters(characters: PagedList<Character>)
     }
 }

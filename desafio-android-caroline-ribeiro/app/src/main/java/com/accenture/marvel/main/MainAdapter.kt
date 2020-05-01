@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.accenture.marvel.R
 import com.accenture.marvel.character.CharacterActivity
@@ -14,8 +16,17 @@ import com.accenture.marvel.util.Extra
 import com.accenture.marvel.util.load
 import kotlinx.android.synthetic.main.item_character.view.*
 
-class MainAdapter(private var items: List<Character>) :
-    RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter : PagedListAdapter<Character, MainAdapter.ViewHolder>(diffCallback)  {
+
+    companion object {
+        private val diffCallback = object : DiffUtil.ItemCallback<Character>() {
+            override fun areItemsTheSame(oldItem: Character, newItem: Character): Boolean =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: Character, newItem: Character): Boolean =
+                oldItem == newItem
+        }
+    }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
         private val context = view.context
@@ -50,12 +61,7 @@ class MainAdapter(private var items: List<Character>) :
         LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false)
     )
 
-    override fun getItemCount(): Int = items.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
-
-    fun updateItems(newItems: List<Character>) {
-        this.items = newItems
-        this.notifyDataSetChanged()
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        getItem(position)?.let { holder.bind(it) }
     }
 }

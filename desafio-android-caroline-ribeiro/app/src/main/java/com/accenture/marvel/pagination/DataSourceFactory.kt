@@ -1,8 +1,8 @@
 package com.accenture.marvel.pagination
 
 import androidx.paging.DataSource
-import com.accenture.marvel.model.CharacterResponse
+import com.accenture.marvel.model.Character
 
-class DataSourceFactory : DataSource.Factory<Int, CharacterResponse>() {
+class DataSourceFactory : DataSource.Factory<Int, Character>() {
     override fun create(): CharacterDataSource = CharacterDataSource()
 }
