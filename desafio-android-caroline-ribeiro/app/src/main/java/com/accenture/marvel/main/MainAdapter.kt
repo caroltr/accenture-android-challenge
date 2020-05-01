@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.accenture.marvel.R
-import com.accenture.marvel.detail.DetailActivity
+import com.accenture.marvel.character.CharacterActivity
 import com.accenture.marvel.network.model.Result
 import com.accenture.marvel.util.load
 import kotlinx.android.synthetic.main.item_character.view.*
@@ -39,7 +39,7 @@ class MainAdapter(private var items: List<Result>) :
             val bundleExtras = Bundle()
             bundleExtras.putParcelable("details", this.item)
 
-            val intent = Intent(context, DetailActivity::class.java)
+            val intent = Intent(context, CharacterActivity::class.java)
             intent.putExtras(bundleExtras)
             context.startActivity(intent)
         }

@@ -1,16 +1,16 @@
-package com.accenture.marvel.detail
+package com.accenture.marvel.character
 
 import android.os.Bundle
 import com.accenture.marvel.base.BasePresenter
 import com.accenture.marvel.base.BaseView
 
-interface DetailContract {
+interface CharacterContract {
 
     interface Presenter: BasePresenter {
         fun start(extras: Bundle?)
     }
 
     interface View: BaseView<Presenter> {
-        fun showData(detail: DetailModel)
+        fun showData(character: CharacterModel)
     }
 }

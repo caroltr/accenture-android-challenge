@@ -1,8 +1,8 @@
-package com.accenture.marvel.detail
+package com.accenture.marvel.character
 
 import com.accenture.marvel.network.model.*
 
-data class DetailModel (
+data class CharacterModel (
     val name: String,
     val avatarUrl: String,
     val description: String,
