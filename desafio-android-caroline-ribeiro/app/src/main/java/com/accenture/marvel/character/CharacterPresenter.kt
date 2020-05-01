@@ -1,6 +1,7 @@
 package com.accenture.marvel.character
 
 import android.os.Bundle
+import com.accenture.marvel.error.ErrorHandler
 import com.accenture.marvel.model.Character
 import com.accenture.marvel.model.Hq
 import com.accenture.marvel.respository.RemoteRepository
@@ -11,7 +12,8 @@ import io.reactivex.schedulers.Schedulers
 
 class CharacterPresenter(private val view: CharacterContract.View) : CharacterContract.Presenter {
 
-    private val repository by lazy { RemoteRepository() }
+    private val repository = RemoteRepository()
+    private val errorHandler = ErrorHandler()
     lateinit var id: String
 
     override fun start(extras: Bundle?) {
@@ -51,7 +53,8 @@ class CharacterPresenter(private val view: CharacterContract.View) : CharacterCo
                     )
                 )
             }, {
-                view.showError()
+                val message = errorHandler.getMessage(it)
+                view.showError(message)
             })
     }
 }

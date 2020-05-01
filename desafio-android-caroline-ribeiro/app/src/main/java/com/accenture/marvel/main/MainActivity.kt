@@ -2,6 +2,7 @@ package com.accenture.marvel.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.paging.PagedList
 import com.accenture.marvel.R
 import com.accenture.marvel.model.Character
@@ -23,8 +24,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         presenter.getCharacters()
     }
 
-    override fun showError() {
-        // TODO
+    override fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     override fun showCharacters(characters: PagedList<Character>) {

@@ -2,6 +2,7 @@ package com.accenture.marvel.character
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.accenture.marvel.R
 import com.accenture.marvel.hq.HqActivity
@@ -49,8 +50,8 @@ class CharacterActivity : AppCompatActivity(), CharacterContract.View {
         startActivity(intent)
     }
 
-    override fun showError() {
-        // TODO
+    override fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     override fun setPresenter(presenter: CharacterContract.Presenter) {

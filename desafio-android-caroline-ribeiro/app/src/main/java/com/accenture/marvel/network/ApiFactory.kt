@@ -1,7 +1,5 @@
 package com.accenture.marvel.network
 
-import com.accenture.marvel.error.ErrorHandler
-import com.accenture.marvel.error.exception.ApiResponseError
 import com.accenture.marvel.util.AppConstants
 import com.accenture.marvel.util.md5
 import okhttp3.Interceptor

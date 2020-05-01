@@ -10,15 +10,26 @@ class ErrorHandler {
 
     private val gson by lazy { Gson() }
 
+    fun getMessage(error: Throwable): String {
+        val defaultMessage = "An unexpected error has occurred"
+
+        val message = when (error) {
+            is ApiResponseError -> error.message
+            else -> null
+        }
+
+        return message?:defaultMessage
+    }
+
     fun getError(statusCode: Int, response: ResponseBody?): Throwable {
         return when (statusCode) {
-            409 -> ApiResponseError(getErrorMessage(response))
+            409 -> ApiResponseError(getResponseMessage(response))
 
             else -> Exception()
         }
     }
 
-    private fun getErrorMessage(response: ResponseBody?): String {
+    private fun getResponseMessage(response: ResponseBody?): String {
         var message = ""
         response?.let {
             val json = it.string()

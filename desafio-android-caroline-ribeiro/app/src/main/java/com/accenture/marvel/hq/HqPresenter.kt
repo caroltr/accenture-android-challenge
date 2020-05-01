@@ -14,5 +14,4 @@ class HqPresenter(private val view: HqContract.View) : HqContract.Presenter {
             }
         }
     }
-
 }

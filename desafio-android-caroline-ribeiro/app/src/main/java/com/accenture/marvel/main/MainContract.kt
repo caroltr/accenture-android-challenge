@@ -12,7 +12,7 @@ interface MainContract {
     }
 
     interface View: BaseView<Presenter> {
-        fun showError()
+        fun showError(message: String)
         fun showCharacters(characters: PagedList<Character>)
     }
 }

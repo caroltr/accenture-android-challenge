@@ -2,17 +2,17 @@ package com.accenture.marvel.main
 
 import androidx.paging.PagedList
 import androidx.paging.RxPagedListBuilder
+import com.accenture.marvel.error.ErrorHandler
 import com.accenture.marvel.model.Character
 import com.accenture.marvel.pagination.CharacterDataSource.Companion.PAGE_SIZE
 import com.accenture.marvel.pagination.DataSourceFactory
-import com.accenture.marvel.respository.RemoteRepository
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
 
-    private val repository = RemoteRepository()
+    private val errorHandler = ErrorHandler()
     private val dataSourceFactory = DataSourceFactory()
 
     override fun getCharacters() {
@@ -22,7 +22,8 @@ class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
             .subscribe({ characters ->
                 view.showCharacters(characters)
             }, {
-                view.showError()
+                val message = errorHandler.getMessage(it)
+                view.showError(message)
             })
     }
 
