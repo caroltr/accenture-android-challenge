@@ -1,8 +1,12 @@
 package com.accenture.marvel.character
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.accenture.marvel.R
+import com.accenture.marvel.hq.HqActivity
+import com.accenture.marvel.model.Hq
+import com.accenture.marvel.util.Extra
 import com.accenture.marvel.util.load
 import kotlinx.android.synthetic.main.activity_character.*
 
@@ -23,6 +27,15 @@ class CharacterActivity : AppCompatActivity(), CharacterContract.View {
         tv_name.text = name
         tv_description.text = description
         iv_avatar.load(avatarUrl)
+    }
+
+    override fun displayMostExpensiveHq(hq: Hq) {
+        val extra = Bundle()
+        extra.putParcelable(Extra.HQ.value, hq)
+
+        val intent = Intent(this@CharacterActivity, HqActivity::class.java)
+        intent.putExtras(extra)
+        startActivity(intent)
     }
 
     override fun setPresenter(presenter: CharacterContract.Presenter) {

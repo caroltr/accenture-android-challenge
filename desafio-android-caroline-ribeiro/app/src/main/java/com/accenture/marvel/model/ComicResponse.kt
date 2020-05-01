@@ -1,4 +1,7 @@
-package com.accenture.marvel.network.model
+package com.accenture.marvel.model
+
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
 data class ComicResponse(
     val code: String,
@@ -22,6 +25,7 @@ data class ComicResult(
     val title: String
 )
 
+@Parcelize
 data class Price(
     val price: Double
-)
+) : Parcelable

@@ -1,7 +1,7 @@
 package com.accenture.marvel.pagination
 
 import androidx.paging.PageKeyedDataSource
-import com.accenture.marvel.network.model.CharacterResponse
+import com.accenture.marvel.model.CharacterResponse
 
 class CharacterDataSource : PageKeyedDataSource<Int, CharacterResponse>() {
 

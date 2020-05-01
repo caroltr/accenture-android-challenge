@@ -1,6 +1,5 @@
 package com.accenture.marvel.network
 
-import com.accenture.marvel.BuildConfig.apiPublicKey
 import com.accenture.marvel.util.AppConstants
 import com.accenture.marvel.util.md5
 import okhttp3.Interceptor
@@ -8,11 +7,8 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 object ApiFactory {
-
-    // [ base url: https://gateway.marvel.com , api version: Cable ]
 
     private val ts = "${System.currentTimeMillis()}"
     private val privateKey = AppConstants.apiPrivateKey

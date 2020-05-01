@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.accenture.marvel.R
 import com.accenture.marvel.character.CharacterActivity
-import com.accenture.marvel.network.model.Character
+import com.accenture.marvel.model.Character
+import com.accenture.marvel.util.AspectRatio
+import com.accenture.marvel.util.Extra
 import com.accenture.marvel.util.load
 import kotlinx.android.synthetic.main.item_character.view.*
 
@@ -30,13 +32,13 @@ class MainAdapter(private var items: List<Character>) :
             this.item = item
 
             name.text = item.name
-            val url = "${item.thumbnail.path}/portrait_medium.${item.thumbnail.extension}"
+            val url = "${item.thumbnail.path}/${AspectRatio.MEDIUM.value}.${item.thumbnail.extension}"
             avatar.load(url)
         }
 
         override fun onClick(v: View?) {
             val bundleExtras = Bundle()
-            bundleExtras.putParcelable("details", this.item)
+            bundleExtras.putParcelable(Extra.CHARACTER.value, this.item)
 
             val intent = Intent(context, CharacterActivity::class.java)
             intent.putExtras(bundleExtras)

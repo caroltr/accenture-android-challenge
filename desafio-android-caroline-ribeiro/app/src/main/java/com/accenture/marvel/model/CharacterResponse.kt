@@ -1,4 +1,4 @@
-package com.accenture.marvel.network.model
+package com.accenture.marvel.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
