@@ -1,7 +1,7 @@
 package com.accenture.marvel.character
 
 import android.os.Bundle
-import com.accenture.marvel.network.model.Result
+import com.accenture.marvel.network.model.Character
 
 class CharacterPresenter(private val view: CharacterContract.View) : CharacterContract.Presenter {
 
@@ -9,7 +9,7 @@ class CharacterPresenter(private val view: CharacterContract.View) : CharacterCo
 
     override fun start(extras: Bundle?) {
         extras?.let { it ->
-            val character = it["details"] as? Result
+            val character = it["details"] as? Character
             character?.let { c ->
                 val url = "${c.thumbnail.path}/portrait_medium.${c.thumbnail.extension}"
 

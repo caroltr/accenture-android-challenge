@@ -8,17 +8,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.accenture.marvel.R
 import com.accenture.marvel.character.CharacterActivity
-import com.accenture.marvel.network.model.Result
+import com.accenture.marvel.network.model.Character
 import com.accenture.marvel.util.load
 import kotlinx.android.synthetic.main.item_character.view.*
 
-class MainAdapter(private var items: List<Result>) :
+class MainAdapter(private var items: List<Character>) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
-
         private val context = view.context
-        private lateinit var item: Result
+        private lateinit var item: Character
 
         init {
             view.setOnClickListener(this)
@@ -27,7 +26,7 @@ class MainAdapter(private var items: List<Result>) :
         private val name = view.tv_name
         private val avatar = view.iv_avatar
 
-        fun bind(item: Result) {
+        fun bind(item: Character) {
             this.item = item
 
             name.text = item.name
@@ -53,7 +52,7 @@ class MainAdapter(private var items: List<Result>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
 
-    fun updateItems(newItems: List<Result>) {
+    fun updateItems(newItems: List<Character>) {
         this.items = newItems
         this.notifyDataSetChanged()
     }
