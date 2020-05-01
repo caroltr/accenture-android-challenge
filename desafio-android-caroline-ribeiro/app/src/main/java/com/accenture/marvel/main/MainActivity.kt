@@ -2,11 +2,8 @@ package com.accenture.marvel.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
 import com.accenture.marvel.R
-import com.accenture.marvel.network.ApiFactory
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.accenture.marvel.model.Character
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -21,26 +18,17 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setPresenter(MainPresenter(this))
 
         adapter = MainAdapter(listOf())
-
-        rv_items.layoutManager = GridLayoutManager(this, 3)
         rv_items.adapter = adapter
 
-            ApiFactory.marvelApi.getCharacters()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    println("SUCESSO")
+        presenter.getCharacters()
+    }
 
-                    it.body()?.let { response ->
-                        val results = response.data.results
-                        adapter.updateItems(results)
-                    }
+    override fun showError() {
+        // TODO
+    }
 
-                }, {
-                    println("ERROR")
-                }, {
-                    println("COMPLETED")
-                })
+    override fun showCharacters(characters: List<Character>) {
+        adapter.updateItems(characters)
     }
 
     override fun setPresenter(presenter: MainContract.Presenter) {

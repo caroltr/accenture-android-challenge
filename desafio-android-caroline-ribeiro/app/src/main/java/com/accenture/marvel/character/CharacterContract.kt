@@ -15,5 +15,6 @@ interface CharacterContract {
     interface View: BaseView<Presenter> {
         fun showData(name: String, description: String, avatarUrl: String)
         fun displayMostExpensiveHq(hq: Hq)
+        fun showError()
     }
 }

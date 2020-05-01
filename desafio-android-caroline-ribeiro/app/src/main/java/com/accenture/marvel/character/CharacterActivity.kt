@@ -38,6 +38,10 @@ class CharacterActivity : AppCompatActivity(), CharacterContract.View {
         startActivity(intent)
     }
 
+    override fun showError() {
+        // TODO
+    }
+
     override fun setPresenter(presenter: CharacterContract.Presenter) {
         this.presenter = presenter
     }
