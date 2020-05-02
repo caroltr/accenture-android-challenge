@@ -9,6 +9,7 @@ import com.accenture.marvel.hq.HqActivity
 import com.accenture.marvel.model.Hq
 import com.accenture.marvel.util.Extra
 import com.accenture.marvel.util.load
+import com.accenture.marvel.util.loadCircle
 import kotlinx.android.synthetic.main.activity_character.*
 
 class CharacterActivity : AppCompatActivity(), CharacterContract.View {
@@ -38,7 +39,7 @@ class CharacterActivity : AppCompatActivity(), CharacterContract.View {
     override fun showData(name: String, description: String, avatarUrl: String) {
         tv_name.text = name
         tv_description.text = description
-        iv_avatar.load(avatarUrl)
+        iv_avatar.loadCircle(avatarUrl)
     }
 
     override fun displayMostExpensiveHq(hq: Hq) {
