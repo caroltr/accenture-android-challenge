@@ -1,4 +1,4 @@
-package com.accenture.marvel.respository
+package com.accenture.marvel.repository
 
 import com.accenture.marvel.error.ErrorHandler
 import com.accenture.marvel.error.exception.ApiResponseError

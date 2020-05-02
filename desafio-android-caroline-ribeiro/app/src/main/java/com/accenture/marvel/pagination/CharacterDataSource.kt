@@ -2,10 +2,9 @@ package com.accenture.marvel.pagination
 
 import androidx.paging.PageKeyedDataSource
 import com.accenture.marvel.model.Character
-import com.accenture.marvel.respository.RemoteRepository
+import com.accenture.marvel.repository.RemoteRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.plugins.RxJavaPlugins.onError
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 
@@ -33,6 +32,7 @@ class CharacterDataSource : PageKeyedDataSource<Int, Character>() {
                 callback.onResult(it.results, 1, 2)
             }, {
 //                onError(it)
+
             })
 
         disposables.add(disposable)

@@ -1,6 +1,7 @@
 package com.accenture.marvel.error
 
 import com.accenture.marvel.error.exception.ApiResponseError
+import com.accenture.marvel.error.exception.CommunicationException
 import com.accenture.marvel.model.ErrorResponse
 import com.google.gson.Gson
 import okhttp3.ResponseBody
@@ -25,7 +26,7 @@ class ErrorHandler {
         return when (statusCode) {
             409 -> ApiResponseError(getResponseMessage(response))
 
-            else -> Exception()
+            else -> CommunicationException()
         }
     }
 
