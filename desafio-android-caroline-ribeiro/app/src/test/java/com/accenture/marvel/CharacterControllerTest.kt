@@ -34,4 +34,17 @@ class CharacterControllerTest {
         assertThat(result, equalTo(comic1))
     }
 
+    // Test - remove it late ^
+    @Test
+    fun `When get comic with max price with multiple prices, Expect success 2`() {
+        val tb = Thumbnail("jpg", "path")
+        val comic1 = ComicResult("description1", "1", listOf(Price("type", 43.0), Price("type", 24.6)), tb, "title1")
+        val comic2 = ComicResult("description2", "2", listOf(Price("type", 37.9)), tb, "title2")
+
+        val characterController = CharacterController()
+        val result = characterController.getComicMaxPrice(listOf(comic1, comic2))
+
+        assertThat(result, equalTo(comic1))
+    }
+
 }
