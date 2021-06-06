@@ -1,4 +1,4 @@
-package com.accenture.marvel.hq
+package com.accenture.marvel.presentation.hq
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData

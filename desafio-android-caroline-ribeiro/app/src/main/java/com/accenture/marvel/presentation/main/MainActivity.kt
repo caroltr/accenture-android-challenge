@@ -1,4 +1,4 @@
-package com.accenture.marvel.main
+package com.accenture.marvel.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +10,8 @@ import com.accenture.marvel.model.Character
 
 class MainActivity : AppCompatActivity() {
 
+    private val model: MainViewModel by viewModels()
+
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -20,19 +22,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.rvItems.adapter = adapter
+        viewSetup()
+        observers()
+    }
 
-        val model: MainViewModel by viewModels()
+    private fun viewSetup() {
+        binding.rvItems.adapter = adapter
+    }
+
+    private fun observers() {
         model.getCharacters().observe(this, { result ->
             showCharacters(result)
         })
     }
 
-    fun showError(message: String) {
+    private fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
-    fun showCharacters(characters: PagedList<Character>) {
+    private fun showCharacters(characters: PagedList<Character>) {
         adapter.submitList(characters)
     }
 }

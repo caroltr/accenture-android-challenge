@@ -1,6 +1,6 @@
 package com.accenture.marvel
 
-import com.accenture.marvel.character.CharacterController
+import com.accenture.marvel.presentation.character.CharacterController
 import com.accenture.marvel.model.ComicResult
 import com.accenture.marvel.model.Price
 import com.accenture.marvel.model.Thumbnail

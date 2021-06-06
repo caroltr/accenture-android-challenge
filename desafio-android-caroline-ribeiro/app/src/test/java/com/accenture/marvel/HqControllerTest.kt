@@ -1,6 +1,6 @@
 package com.accenture.marvel
 
-import com.accenture.marvel.hq.HqController
+import com.accenture.marvel.presentation.hq.HqController
 import com.accenture.marvel.model.Price
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat

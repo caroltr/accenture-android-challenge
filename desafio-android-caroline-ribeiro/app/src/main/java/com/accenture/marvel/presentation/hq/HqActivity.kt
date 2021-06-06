@@ -1,10 +1,9 @@
-package com.accenture.marvel.hq
+package com.accenture.marvel.presentation.hq
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.accenture.marvel.databinding.ActivityHqBinding
-import com.accenture.marvel.util.load
 
 class HqActivity : AppCompatActivity() {
 

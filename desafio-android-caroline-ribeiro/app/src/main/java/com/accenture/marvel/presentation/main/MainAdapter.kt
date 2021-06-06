@@ -1,4 +1,4 @@
-package com.accenture.marvel.main
+package com.accenture.marvel.presentation.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.accenture.marvel.character.CharacterActivity
+import com.accenture.marvel.presentation.character.CharacterActivity
 import com.accenture.marvel.databinding.ItemCharacterBinding
 import com.accenture.marvel.model.Character
 import com.accenture.marvel.util.AspectRatio

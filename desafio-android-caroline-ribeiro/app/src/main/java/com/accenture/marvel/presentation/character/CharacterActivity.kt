@@ -1,4 +1,4 @@
-package com.accenture.marvel.character
+package com.accenture.marvel.presentation.character
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.accenture.marvel.databinding.ActivityCharacterBinding
-import com.accenture.marvel.hq.HqActivity
+import com.accenture.marvel.presentation.hq.HqActivity
 import com.accenture.marvel.model.Hq
 import com.accenture.marvel.util.Extra
 import com.accenture.marvel.util.loadCircle

@@ -1,4 +1,4 @@
-package com.accenture.marvel.hq
+package com.accenture.marvel.presentation.hq
 
 import com.accenture.marvel.model.Price
 import com.accenture.marvel.util.asReais

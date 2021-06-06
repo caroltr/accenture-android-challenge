@@ -1,4 +1,4 @@
-package com.accenture.marvel.network
+package com.accenture.marvel.data.network
 
 import com.accenture.marvel.model.CharacterResponse
 import com.accenture.marvel.model.ComicResponse

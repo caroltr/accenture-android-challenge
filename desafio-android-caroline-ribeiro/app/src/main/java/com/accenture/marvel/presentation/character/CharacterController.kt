@@ -1,4 +1,4 @@
-package com.accenture.marvel.character
+package com.accenture.marvel.presentation.character
 
 import com.accenture.marvel.model.ComicResult
 

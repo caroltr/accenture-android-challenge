@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".main.MainActivity"
+            android:name="com.accenture.marvel.presentation.main.MainActivity"
             android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,8 +23,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".character.CharacterActivity" />
-        <activity android:name=".hq.HqActivity" />
+        <activity android:name="com.accenture.marvel.presentation.character.CharacterActivity" />
+        <activity android:name="com.accenture.marvel.presentation.hq.HqActivity" />
 
     </application>
 

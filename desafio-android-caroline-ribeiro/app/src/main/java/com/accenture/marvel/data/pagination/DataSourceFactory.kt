@@ -1,4 +1,4 @@
-package com.accenture.marvel.pagination
+package com.accenture.marvel.data.pagination
 
 import androidx.paging.DataSource
 import com.accenture.marvel.model.Character

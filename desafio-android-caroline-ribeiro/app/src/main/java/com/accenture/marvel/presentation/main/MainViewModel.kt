@@ -1,4 +1,4 @@
-package com.accenture.marvel.main
+package com.accenture.marvel.presentation.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,8 +7,8 @@ import androidx.paging.PagedList
 import androidx.paging.RxPagedListBuilder
 import com.accenture.marvel.error.ErrorHandler
 import com.accenture.marvel.model.Character
-import com.accenture.marvel.pagination.CharacterDataSource.Companion.PAGE_SIZE
-import com.accenture.marvel.pagination.DataSourceFactory
+import com.accenture.marvel.data.pagination.CharacterDataSource.Companion.PAGE_SIZE
+import com.accenture.marvel.data.pagination.DataSourceFactory
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

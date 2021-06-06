@@ -1,4 +1,4 @@
-package com.accenture.marvel.network
+package com.accenture.marvel.data.network
 
 import com.accenture.marvel.util.AppConstants
 import com.accenture.marvel.util.md5
