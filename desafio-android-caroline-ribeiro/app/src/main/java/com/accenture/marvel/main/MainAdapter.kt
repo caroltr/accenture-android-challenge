@@ -8,15 +8,14 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.accenture.marvel.R
 import com.accenture.marvel.character.CharacterActivity
+import com.accenture.marvel.databinding.ItemCharacterBinding
 import com.accenture.marvel.model.Character
 import com.accenture.marvel.util.AspectRatio
 import com.accenture.marvel.util.Extra
 import com.accenture.marvel.util.load
-import kotlinx.android.synthetic.main.item_character.view.*
 
-class MainAdapter : PagedListAdapter<Character, MainAdapter.ViewHolder>(diffCallback)  {
+class MainAdapter : PagedListAdapter<Character, MainAdapter.ViewHolder>(diffCallback) {
 
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<Character>() {
@@ -28,22 +27,24 @@ class MainAdapter : PagedListAdapter<Character, MainAdapter.ViewHolder>(diffCall
         }
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
-        private val context = view.context
+    class ViewHolder(item: ItemCharacterBinding) : RecyclerView.ViewHolder(item.root),
+        View.OnClickListener {
+        private val context = item.root.context
         private lateinit var item: Character
 
         init {
-            view.setOnClickListener(this)
+            item.root.setOnClickListener(this)
         }
 
-        private val name = view.tv_name
-        private val avatar = view.iv_avatar
+        private val name = item.tvName
+        private val avatar = item.ivAvatar
 
         fun bind(item: Character) {
             this.item = item
 
             name.text = item.name
-            val url = "${item.thumbnail.path}/${AspectRatio.MEDIUM.value}.${item.thumbnail.extension}"
+            val url =
+                "${item.thumbnail.path}/${AspectRatio.MEDIUM.value}.${item.thumbnail.extension}"
             avatar.load(url)
         }
 
@@ -58,7 +59,7 @@ class MainAdapter : PagedListAdapter<Character, MainAdapter.ViewHolder>(diffCall
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false)
+        ItemCharacterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

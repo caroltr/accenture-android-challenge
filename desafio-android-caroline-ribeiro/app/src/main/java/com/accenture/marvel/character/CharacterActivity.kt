@@ -4,27 +4,29 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.accenture.marvel.R
+import com.accenture.marvel.databinding.ActivityCharacterBinding
 import com.accenture.marvel.hq.HqActivity
 import com.accenture.marvel.model.Hq
 import com.accenture.marvel.util.Extra
-import com.accenture.marvel.util.load
 import com.accenture.marvel.util.loadCircle
-import kotlinx.android.synthetic.main.activity_character.*
 
 class CharacterActivity : AppCompatActivity(), CharacterContract.View {
 
+    private lateinit var binding: ActivityCharacterBinding
     private lateinit var presenter: CharacterContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_character)
+        binding = ActivityCharacterBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
         setPresenter(CharacterPresenter(this))
 
         displayBackButton()
 
         presenter.start(intent.extras)
-        btn_hq.setOnClickListener { presenter.getHqId() }
+        binding.btnHq.setOnClickListener { presenter.getHqId() }
     }
 
     private fun displayBackButton() {
@@ -37,9 +39,9 @@ class CharacterActivity : AppCompatActivity(), CharacterContract.View {
     }
 
     override fun showData(name: String, description: String, avatarUrl: String) {
-        tv_name.text = name
-        tv_description.text = description
-        iv_avatar.loadCircle(avatarUrl)
+        binding.tvName.text = name
+        binding.tvDescription.text = description
+        binding.ivAvatar.loadCircle(avatarUrl)
     }
 
     override fun displayMostExpensiveHq(hq: Hq) {
