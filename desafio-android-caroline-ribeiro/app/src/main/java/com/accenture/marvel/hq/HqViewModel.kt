@@ -4,14 +4,14 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.paging.PagedList
-import com.accenture.marvel.model.Character
 import com.accenture.marvel.model.Hq
 import com.accenture.marvel.util.Extra
 
 class HqViewModel : ViewModel() {
 
-    private lateinit var _hq: MutableLiveData<Hq>
+    private val _hq by lazy {
+        MutableLiveData<Hq>()
+    }
 
     val hq : LiveData<Hq>
         get() = _hq

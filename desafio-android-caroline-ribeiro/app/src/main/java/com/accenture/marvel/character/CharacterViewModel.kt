@@ -11,19 +11,30 @@ import com.accenture.marvel.repository.RemoteRepository
 import com.accenture.marvel.util.AspectRatio
 import com.accenture.marvel.util.Extra
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class CharacterViewModel : ViewModel() {
 
+    private var disposable: Disposable? = null
     private val controller = CharacterController()
     private val repository = RemoteRepository()
     private val errorHandler = ErrorHandler()
     lateinit var id: String
 
-    private lateinit var _character: MutableLiveData<CharacterPresentation>
+    private val _character by lazy {
+        MutableLiveData<CharacterPresentation>()
+    }
 
-    val character : LiveData<CharacterPresentation>
+    private val _hqMostExpensive by lazy {
+        MutableLiveData<Hq>()
+    }
+
+    val character: LiveData<CharacterPresentation>
         get() = _character
+
+    val hqMostExpensive: LiveData<Hq>
+        get() = _hqMostExpensive
 
     fun start(extras: Bundle?) {
         extras?.let { it ->
@@ -37,8 +48,9 @@ class CharacterViewModel : ViewModel() {
         }
     }
 
-    fun getHqId() {
-        val disposable = repository.fetchComic(id)
+    fun getMostExpensiveHq() {
+
+        disposable = repository.fetchComic(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ comics ->
@@ -46,17 +58,23 @@ class CharacterViewModel : ViewModel() {
                 val url =
                     "${hq.thumbnail.path}/${AspectRatio.MEDIUM.value}.${hq.thumbnail.extension}"
 
-//                view.displayMostExpensiveHq(
-//                    Hq(
-//                        hq.title,
-//                        hq.description,
-//                        url,
-//                        hq.prices
-//                    )
-//                )
+                _hqMostExpensive.postValue(
+                    Hq(
+                        hq.title,
+                        hq.description,
+                        url,
+                        hq.prices
+                    )
+                )
+
             }, {
                 val message = errorHandler.getMessage(it)
 //                view.showError(message)
             })
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable?.dispose()
     }
 }

@@ -16,7 +16,7 @@ import io.reactivex.schedulers.Schedulers
 
 class MainViewModel : ViewModel() {
 
-    private lateinit var disposable: Disposable
+    private var disposable: Disposable? = null
 
     private val errorHandler = ErrorHandler()
     private val dataSourceFactory = DataSourceFactory()
@@ -60,6 +60,6 @@ class MainViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        disposable.dispose()
+        disposable?.dispose()
     }
 }

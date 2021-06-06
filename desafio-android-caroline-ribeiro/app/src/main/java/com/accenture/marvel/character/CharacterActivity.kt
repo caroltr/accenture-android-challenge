@@ -13,20 +13,24 @@ import com.accenture.marvel.util.loadCircle
 
 class CharacterActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityCharacterBinding
+    private val model: CharacterViewModel by viewModels()
+    private val binding by lazy {
+        ActivityCharacterBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCharacterBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         displayBackButton()
 
-        val model: CharacterViewModel by viewModels()
         model.start(intent.extras)
 
-//        binding.btnHq.setOnClickListener { presenter.getHqId() }
+        binding.btnHq.setOnClickListener { model.getMostExpensiveHq() }
+
+        model.hqMostExpensive.observe(this, { hq ->
+            displayMostExpensiveHq(hq)
+        })
 
         model.character.observe(this, { char ->
             showData(char.name, char.description, char.url)
