@@ -3,6 +3,7 @@ package com.accenture.marvel.character
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.accenture.marvel.databinding.ActivityCharacterBinding
 import com.accenture.marvel.hq.HqActivity
@@ -10,10 +11,9 @@ import com.accenture.marvel.model.Hq
 import com.accenture.marvel.util.Extra
 import com.accenture.marvel.util.loadCircle
 
-class CharacterActivity : AppCompatActivity(), CharacterContract.View {
+class CharacterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCharacterBinding
-    private lateinit var presenter: CharacterContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,12 +21,16 @@ class CharacterActivity : AppCompatActivity(), CharacterContract.View {
         val view = binding.root
         setContentView(view)
 
-        setPresenter(CharacterPresenter(this))
-
         displayBackButton()
 
-        presenter.start(intent.extras)
-        binding.btnHq.setOnClickListener { presenter.getHqId() }
+        val model: CharacterViewModel by viewModels()
+        model.start(intent.extras)
+
+//        binding.btnHq.setOnClickListener { presenter.getHqId() }
+
+        model.character.observe(this, { char ->
+            showData(char.name, char.description, char.url)
+        })
     }
 
     private fun displayBackButton() {
@@ -38,13 +42,13 @@ class CharacterActivity : AppCompatActivity(), CharacterContract.View {
         return true
     }
 
-    override fun showData(name: String, description: String, avatarUrl: String) {
+    private fun showData(name: String, description: String, avatarUrl: String) {
         binding.tvName.text = name
         binding.tvDescription.text = description
         binding.ivAvatar.loadCircle(avatarUrl)
     }
 
-    override fun displayMostExpensiveHq(hq: Hq) {
+    fun displayMostExpensiveHq(hq: Hq) {
         val extra = Bundle()
         extra.putParcelable(Extra.HQ.value, hq)
 
@@ -53,12 +57,7 @@ class CharacterActivity : AppCompatActivity(), CharacterContract.View {
         startActivity(intent)
     }
 
-    override fun showError(message: String) {
+    fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
-
-    override fun setPresenter(presenter: CharacterContract.Presenter) {
-        this.presenter = presenter
-    }
-
 }

@@ -21,13 +21,13 @@ class MainViewModel : ViewModel() {
     private val errorHandler = ErrorHandler()
     private val dataSourceFactory = DataSourceFactory()
 
-    private val characters: MutableLiveData<List<Character>> by lazy {
-        MutableLiveData<List<Character>>().also {
+    private val characters: MutableLiveData<PagedList<Character>> by lazy {
+        MutableLiveData<PagedList<Character>>().also {
             loadCharacters()
         }
     }
 
-    fun getCharacters(): LiveData<List<Character>> {
+    fun getCharacters(): LiveData<PagedList<Character>> {
         return characters
     }
 

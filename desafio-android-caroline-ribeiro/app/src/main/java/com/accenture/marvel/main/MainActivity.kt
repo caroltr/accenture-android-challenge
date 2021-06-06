@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.paging.PagedList
+import androidx.activity.viewModels
 import com.accenture.marvel.databinding.ActivityMainBinding
 import com.accenture.marvel.model.Character
 
@@ -21,17 +22,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvItems.adapter = adapter
 
-//        val model: MainViewModel by viewModels()
-//        model.getMovies().observe(this, { result ->
-//
-//            result.data?.also {
-//                adapter.updateList(it)
-//            }
-//
-//            result.message?.also {
-//                Log.e("ERROR", it)
-//            }
-//        })
+        val model: MainViewModel by viewModels()
+        model.getCharacters().observe(this, { result ->
+            showCharacters(result)
+        })
     }
 
     fun showError(message: String) {
