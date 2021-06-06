@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import androidx.paging.RxPagedListBuilder
-import com.accenture.marvel.error.ErrorHandler
-import com.accenture.marvel.model.Character
+import com.accenture.marvel.domain.error.ErrorHandler
+import com.accenture.marvel.data.model.Character
 import com.accenture.marvel.data.pagination.CharacterDataSource.Companion.PAGE_SIZE
 import com.accenture.marvel.data.pagination.DataSourceFactory
 import io.reactivex.Observable

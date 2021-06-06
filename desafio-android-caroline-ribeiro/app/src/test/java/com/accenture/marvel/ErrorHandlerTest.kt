@@ -1,8 +1,8 @@
 package com.accenture.marvel
 
-import com.accenture.marvel.error.ErrorHandler
-import com.accenture.marvel.error.exception.ApiResponseError
-import com.accenture.marvel.error.exception.CommunicationException
+import com.accenture.marvel.domain.error.ErrorHandler
+import com.accenture.marvel.domain.error.exception.ApiResponseError
+import com.accenture.marvel.domain.error.exception.CommunicationException
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat

@@ -1,4 +1,4 @@
-package com.accenture.marvel.error.exception
+package com.accenture.marvel.domain.error.exception
 
 import java.lang.Exception
 

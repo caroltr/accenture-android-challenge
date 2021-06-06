@@ -1,10 +1,10 @@
 package com.accenture.marvel.data.repository
 
-import com.accenture.marvel.error.ErrorHandler
-import com.accenture.marvel.error.exception.ApiResponseError
+import com.accenture.marvel.domain.error.ErrorHandler
+import com.accenture.marvel.domain.error.exception.ApiResponseError
 import com.accenture.marvel.data.network.ApiFactory
-import com.accenture.marvel.model.ComicResult
-import com.accenture.marvel.model.CharacterData
+import com.accenture.marvel.data.model.ComicResult
+import com.accenture.marvel.data.model.CharacterData
 import io.reactivex.Observable
 
 class RemoteRepository {

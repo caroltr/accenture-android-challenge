@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.accenture.marvel.databinding.ActivityCharacterBinding
 import com.accenture.marvel.presentation.hq.HqActivity
-import com.accenture.marvel.model.Hq
+import com.accenture.marvel.presentation.character.model.Hq
 import com.accenture.marvel.util.Extra
 import com.accenture.marvel.util.loadCircle
 

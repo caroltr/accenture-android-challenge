@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.accenture.marvel.model.Hq
+import com.accenture.marvel.presentation.character.model.Hq
 import com.accenture.marvel.util.Extra
 
 class HqViewModel : ViewModel() {

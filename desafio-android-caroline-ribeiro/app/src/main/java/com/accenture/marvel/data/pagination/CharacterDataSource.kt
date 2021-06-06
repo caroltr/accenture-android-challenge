@@ -1,7 +1,7 @@
 package com.accenture.marvel.data.pagination
 
 import androidx.paging.PageKeyedDataSource
-import com.accenture.marvel.model.Character
+import com.accenture.marvel.data.model.Character
 import com.accenture.marvel.data.repository.RemoteRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

@@ -1,4 +1,4 @@
-package com.accenture.marvel.presentation.character
+package com.accenture.marvel.presentation.character.model
 
 data class CharacterPresentation(
     val name: String,

@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.paging.PagedList
 import androidx.activity.viewModels
 import com.accenture.marvel.databinding.ActivityMainBinding
-import com.accenture.marvel.model.Character
+import com.accenture.marvel.data.model.Character
 
 class MainActivity : AppCompatActivity() {
 

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.accenture.marvel.presentation.character.CharacterActivity
 import com.accenture.marvel.databinding.ItemCharacterBinding
-import com.accenture.marvel.model.Character
+import com.accenture.marvel.data.model.Character
 import com.accenture.marvel.util.AspectRatio
 import com.accenture.marvel.util.Extra
 import com.accenture.marvel.util.load

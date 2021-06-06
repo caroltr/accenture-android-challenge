@@ -1,9 +1,9 @@
 package com.accenture.marvel
 
 import com.accenture.marvel.presentation.character.CharacterController
-import com.accenture.marvel.model.ComicResult
-import com.accenture.marvel.model.Price
-import com.accenture.marvel.model.Thumbnail
+import com.accenture.marvel.data.model.ComicResult
+import com.accenture.marvel.data.model.Price
+import com.accenture.marvel.data.model.Thumbnail
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test

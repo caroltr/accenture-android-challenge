@@ -1,11 +1,10 @@
-package com.accenture.marvel.error
+package com.accenture.marvel.domain.error
 
-import com.accenture.marvel.error.exception.ApiResponseError
-import com.accenture.marvel.error.exception.CommunicationException
-import com.accenture.marvel.model.ErrorResponse
+import com.accenture.marvel.domain.error.exception.ApiResponseError
+import com.accenture.marvel.domain.error.exception.CommunicationException
+import com.accenture.marvel.data.model.ErrorResponse
 import com.google.gson.Gson
 import okhttp3.ResponseBody
-import java.lang.Exception
 
 class ErrorHandler {
 

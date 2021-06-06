@@ -1,7 +1,7 @@
 package com.accenture.marvel.data.network
 
-import com.accenture.marvel.model.CharacterResponse
-import com.accenture.marvel.model.ComicResponse
+import com.accenture.marvel.data.model.CharacterResponse
+import com.accenture.marvel.data.model.ComicResponse
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.GET

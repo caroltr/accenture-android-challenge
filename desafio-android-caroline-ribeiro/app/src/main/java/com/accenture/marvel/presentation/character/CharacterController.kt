@@ -1,6 +1,6 @@
 package com.accenture.marvel.presentation.character
 
-import com.accenture.marvel.model.ComicResult
+import com.accenture.marvel.data.model.ComicResult
 
 class CharacterController {
 

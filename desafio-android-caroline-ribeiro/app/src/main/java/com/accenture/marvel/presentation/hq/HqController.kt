@@ -1,6 +1,6 @@
 package com.accenture.marvel.presentation.hq
 
-import com.accenture.marvel.model.Price
+import com.accenture.marvel.data.model.Price
 import com.accenture.marvel.util.asReais
 
 class HqController {

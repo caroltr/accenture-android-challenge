@@ -4,10 +4,11 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.accenture.marvel.error.ErrorHandler
-import com.accenture.marvel.model.Character
-import com.accenture.marvel.model.Hq
+import com.accenture.marvel.domain.error.ErrorHandler
+import com.accenture.marvel.data.model.Character
+import com.accenture.marvel.presentation.character.model.Hq
 import com.accenture.marvel.data.repository.RemoteRepository
+import com.accenture.marvel.presentation.character.model.CharacterPresentation
 import com.accenture.marvel.util.AspectRatio
 import com.accenture.marvel.util.Extra
 import io.reactivex.android.schedulers.AndroidSchedulers
