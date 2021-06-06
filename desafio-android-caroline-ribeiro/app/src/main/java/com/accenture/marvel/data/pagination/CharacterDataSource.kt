@@ -8,9 +8,9 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 
-class CharacterDataSource : PageKeyedDataSource<Int, Character>() {
-
-    private val repository: RemoteRepository by lazy { RemoteRepository() }
+class CharacterDataSource(
+    private val repository: RemoteRepository
+) : PageKeyedDataSource<Int, Character>() {
 
     private var totalPages = 1
     private var offset = 0

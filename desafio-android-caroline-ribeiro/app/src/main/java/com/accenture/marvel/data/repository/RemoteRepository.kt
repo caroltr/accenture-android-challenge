@@ -7,12 +7,12 @@ import com.accenture.marvel.data.model.ComicResult
 import com.accenture.marvel.data.model.CharacterData
 import io.reactivex.Observable
 
-class RemoteRepository {
+class RemoteRepository(private val api: ApiFactory) {
 
     private val errorHandler = ErrorHandler()
 
     fun fetchCharacters(offset: Int): Observable<CharacterData> {
-        return ApiFactory.marvelApi
+        return api.marvelApi
             .getCharacters(offset)
             .map { response ->
                 if (response.isSuccessful) {
@@ -29,7 +29,7 @@ class RemoteRepository {
     }
 
     fun fetchComic(characterId: String): Observable<List<ComicResult>> {
-        return ApiFactory.marvelApi
+        return api.marvelApi
             .getComicByCharacter(characterId)
             .map { response ->
                 if (response.isSuccessful) {
