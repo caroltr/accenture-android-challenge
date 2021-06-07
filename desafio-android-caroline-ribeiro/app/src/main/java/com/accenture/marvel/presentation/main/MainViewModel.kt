@@ -17,13 +17,13 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel @Inject constructor(
+    repository: RemoteRepository
+) : ViewModel() {
 
     private var disposable: Disposable? = null
-
-    private val api = ApiFactory(application)
-    private val repository = RemoteRepository(api)
 
     private val errorHandler = ErrorHandler()
     private val dataSourceFactory = DataSourceFactory(repository)

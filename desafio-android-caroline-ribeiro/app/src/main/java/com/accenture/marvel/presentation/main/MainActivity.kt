@@ -4,21 +4,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.paging.PagedList
-import androidx.activity.viewModels
+import com.accenture.marvel.MarvelApp
 import com.accenture.marvel.databinding.ActivityMainBinding
 import com.accenture.marvel.data.model.Character
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val model: MainViewModel by viewModels()
+    @Inject lateinit var adapter: MainAdapter
+    @Inject lateinit var viewModel: MainViewModel
 
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private var adapter = MainAdapter()
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        (applicationContext as MarvelApp).appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observers() {
-        model.getCharacters().observe(this, { result ->
+        viewModel.getCharacters().observe(this, { result ->
             showCharacters(result)
         })
     }

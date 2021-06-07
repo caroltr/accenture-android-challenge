@@ -7,8 +7,9 @@ import com.accenture.marvel.data.model.ComicResult
 import com.accenture.marvel.data.model.CharacterData
 import io.reactivex.Observable
 
-class RemoteRepository(private val api: ApiFactory) {
-
+class RemoteRepository(
+    private val api: ApiFactory
+) {
     private val errorHandler = ErrorHandler()
 
     fun fetchCharacters(offset: Int): Observable<CharacterData> {
