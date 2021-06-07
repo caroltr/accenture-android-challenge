@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.accenture.marvel.data.model.Character
+import com.accenture.marvel.data.model.ComicResult
 import com.accenture.marvel.data.repository.RemoteRepository
 import com.accenture.marvel.domain.error.ErrorHandler
 import com.accenture.marvel.presentation.character.model.CharacterPresentation
@@ -21,7 +22,6 @@ class CharacterViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var disposable: Disposable? = null
-    private val controller = CharacterController()
     private val errorHandler = ErrorHandler()
     lateinit var id: String
 
@@ -57,7 +57,7 @@ class CharacterViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ comics ->
-                val hq = controller.getComicMaxPrice(comics)
+                val hq = getComicMaxPrice(comics)
                 val url =
                     "${hq.thumbnail.path}/${AspectRatio.MEDIUM.value}.${hq.thumbnail.extension}"
 
@@ -79,5 +79,13 @@ class CharacterViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         disposable?.dispose()
+    }
+
+    private fun getComicMaxPrice(comics: List<ComicResult>): ComicResult {
+        val sortedResults = comics.sortedByDescending { r ->
+            r.prices.maxByOrNull { it.price }?.price
+        }
+
+        return sortedResults.first()
     }
 }
