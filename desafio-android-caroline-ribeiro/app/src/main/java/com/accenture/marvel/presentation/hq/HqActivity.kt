@@ -3,17 +3,22 @@ package com.accenture.marvel.presentation.hq
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.accenture.marvel.MarvelApp
 import com.accenture.marvel.databinding.ActivityHqBinding
 import com.accenture.marvel.util.load
+import javax.inject.Inject
 
 class HqActivity : AppCompatActivity() {
 
-    private val model: HqViewModel by viewModels()
+    @Inject lateinit var model: HqViewModel
+
     private val binding by lazy {
         ActivityHqBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (applicationContext as MarvelApp).appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 

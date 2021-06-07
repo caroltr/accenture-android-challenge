@@ -3,31 +3,42 @@ package com.accenture.marvel.presentation.character
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.accenture.marvel.MarvelApp
 import com.accenture.marvel.databinding.ActivityCharacterBinding
-import com.accenture.marvel.presentation.hq.HqActivity
 import com.accenture.marvel.presentation.character.model.Hq
+import com.accenture.marvel.presentation.hq.HqActivity
 import com.accenture.marvel.util.Extra
 import com.accenture.marvel.util.loadCircle
+import javax.inject.Inject
 
 class CharacterActivity : AppCompatActivity() {
 
-    private val model: CharacterViewModel by viewModels()
+    @Inject lateinit var model: CharacterViewModel
+
     private val binding by lazy {
         ActivityCharacterBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (applicationContext as MarvelApp).appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        viewSetup()
+        observers()
+    }
+
+    private fun viewSetup() {
         displayBackButton()
 
         model.start(intent.extras)
 
         binding.btnHq.setOnClickListener { model.getMostExpensiveHq() }
+    }
 
+    private fun observers() {
         model.hqMostExpensive.observe(this, { hq ->
             displayMostExpensiveHq(hq)
         })

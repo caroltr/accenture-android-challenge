@@ -6,8 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.accenture.marvel.presentation.character.model.Hq
 import com.accenture.marvel.util.Extra
+import javax.inject.Inject
 
-class HqViewModel : ViewModel() {
+class HqViewModel @Inject constructor(): ViewModel() {
 
     private val _hq by lazy {
         MutableLiveData<Hq>()

@@ -1,30 +1,27 @@
 package com.accenture.marvel.presentation.character
 
-import android.app.Application
 import android.os.Bundle
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.accenture.marvel.domain.error.ErrorHandler
 import com.accenture.marvel.data.model.Character
-import com.accenture.marvel.data.network.ApiFactory
-import com.accenture.marvel.presentation.character.model.Hq
 import com.accenture.marvel.data.repository.RemoteRepository
+import com.accenture.marvel.domain.error.ErrorHandler
 import com.accenture.marvel.presentation.character.model.CharacterPresentation
+import com.accenture.marvel.presentation.character.model.Hq
 import com.accenture.marvel.util.AspectRatio
 import com.accenture.marvel.util.Extra
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class CharacterViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val api = ApiFactory(application)
+class CharacterViewModel @Inject constructor(
+    private val repository: RemoteRepository
+) : ViewModel() {
 
     private var disposable: Disposable? = null
     private val controller = CharacterController()
-    private val repository = RemoteRepository(api)
     private val errorHandler = ErrorHandler()
     lateinit var id: String
 

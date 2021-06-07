@@ -6,8 +6,9 @@ import com.accenture.marvel.data.network.ApiFactory
 import com.accenture.marvel.data.model.ComicResult
 import com.accenture.marvel.data.model.CharacterData
 import io.reactivex.Observable
+import javax.inject.Inject
 
-class RemoteRepository(
+class RemoteRepository @Inject constructor(
     private val api: ApiFactory
 ) {
     private val errorHandler = ErrorHandler()
