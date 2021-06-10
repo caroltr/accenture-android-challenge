@@ -34,14 +34,11 @@ O desafio terá 3 telas:
 * Faça a paginação limitandio a 20 itens por página;
 * Os campos de texto devem ter no máximo 3 linhas.
 
-Bônus:
+## Compilação
 
-* Faça animações de transição das telas.
+Adicione os seguintes parâmetros no arquivo _local.properties_:
 
-
-Regras para entrega do projeto:
-
-* O projeto de ser criado com o nome do desafio (desafio-android), seu nome e último sobrenome separados por traço. Ex: desafio-android-duda-carvalho
-* O prazo para finalização é de uma semana a partir do envio do e-mail com a disponibilização deste desafio.
-* Ao final do prazo, disponibilize o link (Github, Gitlab, Bitbucket...) via e-mail para clone do projeto.
-
+```
+apiPublicKey="YOUR_PUBLIC_KEY"
+apiPrivateKey="YOUR_PRIVATE_KEY"
+```
