@@ -1,12 +1,12 @@
 package com.accenture.marvel.presentation.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.paging.PagedList
 import com.accenture.marvel.MarvelApp
-import com.accenture.marvel.databinding.ActivityMainBinding
 import com.accenture.marvel.data.model.Character
+import com.accenture.marvel.databinding.ActivityMainBinding
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +34,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun observers() {
         viewModel.getCharacters().observe(this, { result ->
-            showCharacters(result)
+            result.data?.also {
+                showCharacters(it)
+            }
+
+            result.message?.also {
+                showError(it)
+            }
         })
     }
 

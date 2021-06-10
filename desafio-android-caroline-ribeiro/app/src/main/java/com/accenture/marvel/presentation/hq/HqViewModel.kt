@@ -4,10 +4,10 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.accenture.marvel.util.Formatter
 import com.accenture.marvel.presentation.character.model.Hq
 import com.accenture.marvel.presentation.hq.model.HqPresentation
 import com.accenture.marvel.util.Extra
+import com.accenture.marvel.util.Formatter
 import javax.inject.Inject
 
 class HqViewModel @Inject constructor(): ViewModel() {

@@ -1,7 +1,7 @@
 package com.accenture.marvel.data.model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 data class ComicResponse(
     val code: String,

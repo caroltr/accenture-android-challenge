@@ -5,13 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.accenture.marvel.data.model.Character
-import com.accenture.marvel.data.model.ComicResult
 import com.accenture.marvel.data.repository.RemoteRepository
 import com.accenture.marvel.domain.error.ErrorHandler
 import com.accenture.marvel.presentation.character.model.CharacterPresentation
 import com.accenture.marvel.presentation.character.model.Hq
 import com.accenture.marvel.util.AspectRatio
 import com.accenture.marvel.util.Extra
+import com.accenture.marvel.util.Result
 import com.accenture.marvel.util.getMaxPrice
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -31,13 +31,13 @@ class CharacterViewModel @Inject constructor(
     }
 
     private val _hqMostExpensive by lazy {
-        MutableLiveData<Hq>()
+        MutableLiveData<Result<Hq>>()
     }
 
     val character: LiveData<CharacterPresentation>
         get() = _character
 
-    val hqMostExpensive: LiveData<Hq>
+    val hqMostExpensive: LiveData<Result<Hq>>
         get() = _hqMostExpensive
 
     fun start(extras: Bundle?) {
@@ -62,18 +62,18 @@ class CharacterViewModel @Inject constructor(
                 val url =
                     "${hq.thumbnail.path}/${AspectRatio.MEDIUM.value}.${hq.thumbnail.extension}"
 
-                _hqMostExpensive.postValue(
-                    Hq(
-                        hq.title,
-                        hq.description,
-                        url,
-                        hq.prices
-                    )
-                )
+                val result = Result.success(Hq(
+                    hq.title,
+                    hq.description,
+                    url,
+                    hq.prices
+                ))
+                _hqMostExpensive.postValue(result)
 
             }, {
                 val message = errorHandler.getMessage(it)
-//                view.showError(message)
+                val result = Result.error<Hq>(message)
+                _hqMostExpensive.postValue(result)
             })
     }
 

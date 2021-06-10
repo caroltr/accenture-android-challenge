@@ -39,8 +39,14 @@ class CharacterActivity : AppCompatActivity() {
     }
 
     private fun observers() {
-        model.hqMostExpensive.observe(this, { hq ->
-            displayMostExpensiveHq(hq)
+        model.hqMostExpensive.observe(this, { result ->
+            result.data?.also {
+                displayMostExpensiveHq(it)
+            }
+
+            result.message?.also {
+                showError(it)
+            }
         })
 
         model.character.observe(this, { char ->
@@ -63,7 +69,7 @@ class CharacterActivity : AppCompatActivity() {
         binding.ivAvatar.loadCircle(avatarUrl)
     }
 
-    fun displayMostExpensiveHq(hq: Hq) {
+    private fun displayMostExpensiveHq(hq: Hq) {
         val extra = Bundle()
         extra.putParcelable(Extra.HQ.value, hq)
 
@@ -72,7 +78,7 @@ class CharacterActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun showError(message: String) {
+    private fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

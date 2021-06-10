@@ -5,6 +5,7 @@ import com.accenture.marvel.data.model.Character
 import com.accenture.marvel.data.repository.RemoteRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.plugins.RxJavaPlugins.onError
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
@@ -32,8 +33,7 @@ class CharacterDataSource @Inject constructor(
 
                 callback.onResult(it.results, 1, 2)
             }, {
-//                onError(it)
-
+                onError(it)
             })
 
         disposables.add(disposable)
@@ -54,7 +54,7 @@ class CharacterDataSource @Inject constructor(
 
                     callback.onResult(it.results, params.key + 1)
                 }, {
-//                    onError(it)
+                    onError(it)
                 })
 
             disposables.add(disposable)

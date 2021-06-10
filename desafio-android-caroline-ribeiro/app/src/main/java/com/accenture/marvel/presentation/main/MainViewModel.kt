@@ -9,6 +9,7 @@ import com.accenture.marvel.data.model.Character
 import com.accenture.marvel.data.pagination.CharacterDataSource.Companion.PAGE_SIZE
 import com.accenture.marvel.data.pagination.DataSourceFactory
 import com.accenture.marvel.domain.error.ErrorHandler
+import com.accenture.marvel.util.Result
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -23,14 +24,14 @@ class MainViewModel @Inject constructor(
 
     private val errorHandler = ErrorHandler()
 
-    private val characters: MutableLiveData<PagedList<Character>> by lazy {
-        MutableLiveData<PagedList<Character>>().also {
+    private val _characters: MutableLiveData<Result<PagedList<Character>>> by lazy {
+        MutableLiveData<Result<PagedList<Character>>>().also {
             loadCharacters()
         }
     }
 
-    fun getCharacters(): LiveData<PagedList<Character>> {
-        return characters
+    fun getCharacters(): LiveData<Result<PagedList<Character>>> {
+        return _characters
     }
 
     private fun loadCharacters() {
@@ -38,10 +39,12 @@ class MainViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ charactersResult ->
-                characters.postValue(charactersResult)
+                val result = Result.success(charactersResult)
+                _characters.postValue(result)
             }, {
                 val message = errorHandler.getMessage(it)
-//                view.showError(message)
+                val result = Result.error<PagedList<Character>>(message)
+                _characters.postValue(result)
             })
     }
 
