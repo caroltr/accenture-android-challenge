@@ -1,6 +1,7 @@
 package com.accenture.marvel.util
 
 import android.widget.ImageView
+import com.accenture.marvel.data.model.ComicResult
 import com.bumptech.glide.Glide
 import java.math.BigInteger
 import java.security.MessageDigest
@@ -26,4 +27,12 @@ fun ImageView.loadCircle(url: String) {
 fun Double.asReais(): String {
     val formatted = "%.2f".format(this)
     return "R$ $formatted"
+}
+
+fun List<ComicResult>.getMaxPrice(): ComicResult {
+    val sortedResults = this.sortedByDescending { r ->
+        r.prices.maxByOrNull { it.price }?.price
+    }
+
+    return sortedResults.first()
 }

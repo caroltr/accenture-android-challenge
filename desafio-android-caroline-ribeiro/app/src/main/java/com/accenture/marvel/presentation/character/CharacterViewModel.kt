@@ -12,6 +12,7 @@ import com.accenture.marvel.presentation.character.model.CharacterPresentation
 import com.accenture.marvel.presentation.character.model.Hq
 import com.accenture.marvel.util.AspectRatio
 import com.accenture.marvel.util.Extra
+import com.accenture.marvel.util.getMaxPrice
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -57,7 +58,7 @@ class CharacterViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ comics ->
-                val hq = getComicMaxPrice(comics)
+                val hq = comics.getMaxPrice()
                 val url =
                     "${hq.thumbnail.path}/${AspectRatio.MEDIUM.value}.${hq.thumbnail.extension}"
 
@@ -79,13 +80,5 @@ class CharacterViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         disposable?.dispose()
-    }
-
-    private fun getComicMaxPrice(comics: List<ComicResult>): ComicResult {
-        val sortedResults = comics.sortedByDescending { r ->
-            r.prices.maxByOrNull { it.price }?.price
-        }
-
-        return sortedResults.first()
     }
 }
