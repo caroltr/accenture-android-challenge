@@ -1,8 +1,8 @@
 package com.accenture.marvel.util
 
 import android.widget.ImageView
+import com.accenture.marvel.data.model.ComicResult
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.Transformation
 import java.math.BigInteger
 import java.security.MessageDigest
 
@@ -29,6 +29,10 @@ fun Double.asReais(): String {
     return "R$ $formatted"
 }
 
-fun Double.format2Dec() : String{
-    return "%.2f".format(this)
+fun List<ComicResult>.getMaxPrice(): ComicResult {
+    val sortedResults = this.sortedByDescending { r ->
+        r.prices.maxByOrNull { it.price }?.price
+    }
+
+    return sortedResults.first()
 }
